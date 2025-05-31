@@ -1,0 +1,107 @@
+/* styles.css - Additional global styles if needed, Tailwind CSS is primary */
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+.status-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px; /* pill shape */
+    font-weight: 600;
+    font-size: 0.75rem; /* Slightly smaller for better fit */
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: inline-block;
+    border: 1px solid transparent; /* Base border */
+    white-space: nowrap; /* Prevent wrapping */
+}
+
+.status-delivered {
+    background-color: rgba(16, 185, 129, 0.15); /* bg-green-500/15 */
+    color: #10B981; /* text-green-500 */
+    border-color: rgba(16, 185, 129, 0.4);
+}
+
+.status-in-transit {
+    background-color: rgba(245, 158, 11, 0.15); /* bg-orange-500/15 */
+    color: #F59E0B; /* text-orange-500 */
+    border-color: rgba(245, 158, 11, 0.4);
+}
+
+.status-returned {
+    background-color: rgba(239, 68, 68, 0.15); /* bg-red-500/15 */
+    color: #EF4444; /* text-red-500 */
+    border-color: rgba(239, 68, 68, 0.4);
+}
+
+.status-error,
+.status-unknown {
+    background-color: rgba(107, 114, 128, 0.15); /* bg-gray-500/15 */
+    color: #9ca3af; /* text-gray-400 */
+    border-color: rgba(107, 114, 128, 0.4);
+}
+
+/* General Loader (for table) */
+.loader {
+    border: 5px solid #4A5568; /* slate-700 */
+    border-top: 5px solid #38bdf8; /* sky-400 */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+}
+
+/* Inline loader (for messages, buttons) */
+.loader-inline {
+    display: inline-block;
+    border: 2px solid rgba(203, 213, 225, 0.5); /* slate-400/50 */
+    border-top: 2px solid #e2e8f0; /* slate-200 */
+    border-radius: 50%;
+    width: 1em;
+    height: 1em;
+    animation: spin 0.8s linear infinite;
+    margin-left: 0.5em;
+    vertical-align: middle; /* Align with text */
+}
+
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Custom message area styles */
+#messageArea.loading {
+    background-color: rgba(59, 130, 246, 0.1); 
+    color: #60a5fa; /* text-blue-400 */
+    border: 1px solid rgba(59, 130, 246, 0.3);
+}
+#messageArea.error {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: #f87171; /* text-red-400 */
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+#messageArea.success {
+    background-color: rgba(16, 185, 129, 0.1);
+    color: #34d399; /* text-green-400 */
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+#ordersTableBody td {
+    padding: 0.75rem 1rem; /* Tailwind's p-3 p-4 */
+    vertical-align: middle;
+}
+
+/* Style for date inputs to match general theme */
+input[type="date"] {
+    color-scheme: dark; /* Helps with calendar picker theme in supporting browsers */
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(0.6) brightness(1.5); /* Adjust color of calendar icon for dark theme */
+}
+
+/* API Test Results styling */
+#apiTestResults p {
+    padding: 0.25rem 0;
+    font-weight: 500;
+}

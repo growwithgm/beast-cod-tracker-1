@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Beast COD Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans min-h-screen p-4 md:p-8">
+    <div class="container mx-auto max-w-7xl">
+        <header class="mb-8 flex flex-col sm:flex-row justify-between items-center">
+            <h1 class="text-3xl font-bold text-sky-400 mb-4 sm:mb-0">Beast COD Tracker</h1>
+            <button id="logoutButton" class="bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-5 rounded-lg transition-colors text-sm shadow-md">
+                Logout
+            </button>
+        </header>
+
+        <div class="mb-8 p-6 bg-slate-800 rounded-xl shadow-lg">
+            <h2 class="text-xl font-semibold text-sky-400 mb-3">API Status & Configuration</h2>
+            <p class="text-sm text-slate-400 mb-4">
+                API keys for Shopify and Correos are configured securely on the backend server via environment variables.
+                They are not entered or stored in this browser interface. Refer to the deployment guide for setup.
+            </p>
+            <button id="testConnectionsButton" class="bg-indigo-500 hover:bg-indigo-600 text-white font-medium py-2 px-5 rounded-lg transition-colors text-sm shadow-md mb-3">
+                Test API Connections
+            </button>
+            <div id="apiTestResults" class="text-sm space-y-1">
+                </div>
+        </div>
+
+        <div id="summaryBar" class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+            <div class="bg-slate-800 p-6 rounded-xl shadow-lg text-center">
+                <h2 class="text-lg font-semibold text-slate-300">✅ Delivered</h2>
+                <p id="deliveredCount" class="text-3xl font-bold text-green-400 mt-2">0</p>
+            </div>
+            <div class="bg-slate-800 p-6 rounded-xl shadow-lg text-center">
+                <h2 class="text-lg font-semibold text-slate-300">🚚 In Transit</h2>
+                <p id="inTransitCount" class="text-3xl font-bold text-orange-400 mt-2">0</p>
+            </div>
+            <div class="bg-slate-800 p-6 rounded-xl shadow-lg text-center">
+                <h2 class="text-lg font-semibold text-slate-300">❌ Returned / Error</h2>
+                <p id="returnedCount" class="text-3xl font-bold text-red-400 mt-2">0</p>
+            </div>
+        </div>
+        
+        <div class="mb-6 p-6 bg-slate-800 rounded-xl shadow-lg">
+            <h3 class="text-lg font-semibold text-slate-300 mb-3">Filter Orders & Refresh</h3>
+            <div class="flex flex-col sm:flex-row sm:items-end gap-4">
+                <div>
+                    <label for="startDate" class="block text-sm font-medium text-slate-400 mb-1">Start Date</label>
+                    <input type="date" id="startDate" name="startDate" class="bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-sm focus:ring-sky-500 focus:border-sky-500 outline-none">
+                </div>
+                <div>
+                    <label for="endDate" class="block text-sm font-medium text-slate-400 mb-1">End Date</label>
+                    <input type="date" id="endDate" name="endDate" class="bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-sm focus:ring-sky-500 focus:border-sky-500 outline-none">
+                </div>
+                <button id="filterButton" class="bg-sky-500 hover:bg-sky-600 text-white font-medium py-2.5 px-5 rounded-lg transition-colors shadow-md text-sm sm:self-end">
+                    Apply Filter & Refresh
+                </button>
+                 <button id="clearFilterButton" class="bg-slate-600 hover:bg-slate-500 text-white font-medium py-2.5 px-5 rounded-lg transition-colors shadow-md text-sm sm:self-end">
+                    Clear Filter & Refresh
+                </button>
+            </div>
+        </div>
+
+        <div id="messageArea" class="mb-6 p-4 text-center rounded-lg hidden"></div>
+
+        <div class="bg-slate-800 rounded-xl shadow-2xl overflow-x-auto">
+            <table class="w-full min-w-max text-sm text-left">
+                <thead class="bg-slate-700">
+                    <tr>
+                        <th class="p-4 font-semibold text-slate-300 tracking-wider">Order #</th>
+                        <th class="p-4 font-semibold text-slate-300 tracking-wider">Order Date</th>
+                        <th class="p-4 font-semibold text-slate-300 tracking-wider">Customer</th>
+                        <th class="p-4 font-semibold text-slate-300 tracking-wider">Tracking #</th>
+                        <th class="p-4 font-semibold text-slate-300 tracking-wider">Correos Status</th>
+                    </tr>
+                </thead>
+                <tbody id="ordersTableBody" class="divide-y divide-slate-700">
+                    </tbody>
+            </table>
+        </div>
+        
+        <footer class="mt-12 text-center text-sm text-slate-500">
+            <p>&copy; <span id="currentYear"></span> Beast COD Tracker. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
